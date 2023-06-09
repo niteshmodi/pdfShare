@@ -6,7 +6,7 @@ import "./Navbar.css";
 const Navbar = ({ user }) => {
     return (
         <nav className='navbar'>
-            <NavLink to='/'>Home</NavLink>
+            
             {!user && (
                 <>
                     <NavLink to='/login'>Login</NavLink>
@@ -15,7 +15,8 @@ const Navbar = ({ user }) => {
             )}
             {user && (
                 <>
-                    <NavLink to='/profile'>Profile</NavLink>
+                     <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/profile'>Your Uploads</NavLink>
                     <NavLink to='/logout'>Logout</NavLink>
                 </>
             )}

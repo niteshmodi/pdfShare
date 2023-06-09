@@ -11,14 +11,15 @@ router.post('/:fileName', auth, async (req, res) => { // Call the auth middlewar
     const userName = req.user.name;
     const newComment = new Comment({ fileName, text, user });
     await newComment.save();
+    await newComment.populate('user');
     res.send(newComment);
 });
 
 // Add a new route to get comments for a specific file
-router.get('/:fileName', auth, async (req, res) => { // Call the auth middleware here
+router.get('/:fileName', async (req, res) => { // Call the auth middleware here
     const fileName = req.params.fileName;
     const comments = await Comment.find({ fileName: fileName }).populate('user', 'name');
-    console.log(comments);
+    console.log("get comments is called ",comments);
     res.send(comments);
 });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import http from '../../utils/http';
-
+//user can upload pdfs using this
 const Upload = () => {
     const [file, setFile] = useState(null);
 
@@ -9,7 +9,10 @@ const Upload = () => {
     }
 
     const handleUpload = async () => {
-        if (!file) return;
+        if (!file) {
+            alert('Please select a PDF file to upload');
+            return;
+        }
 
         const formData = new FormData();
         formData.append('pdf', file);
@@ -20,12 +23,13 @@ const Upload = () => {
             console.log(response.data);
         } catch (error) {
             console.log("i am in errror")
-            console.error(error);
+            alert("Please select a pdf file");
         }
     }
 
     return (
         <div>
+        <div className='header'></div>
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload</button>
         </div>

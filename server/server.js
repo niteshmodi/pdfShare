@@ -6,6 +6,7 @@ const path = require('path');
 
 require("dotenv").config();
 require("./db/connectDB");
+//connenting the database
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +16,7 @@ const authRoutes = require("./routes/auth");
 const uploadRoutes = require("./routes/upload");
 const commentRoutes = require("./routes/servecomments");
 const fileRoutes = require("./routes/file"); 
+const uploadsRoutes = require("./routes/uploads"); 
 app.use(express.json());
 app.use(cors());
 
@@ -25,6 +27,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/file", fileRoutes);
+app.use("/api/uploads", uploadsRoutes); 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`);
 });
